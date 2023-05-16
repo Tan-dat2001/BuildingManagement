@@ -1,62 +1,45 @@
 package ex;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ToaNha {
     private String tenTN;
-    private Date date;
+    private Date ngayThanhLap;
     private int soluongPhong;
-    private String category;
-    public ToaNha(){
+//    private String loaiPhong;
+    private boolean lagiangduong;
+    List<Nhanvien> NhanVienQuanLy;
 
-    }
-
-    public ToaNha(String tenTN, Date date, int soluongPhong, String category) {
+    public ToaNha(String tenTN, Date ngayThanhLap, int soluongPhong, boolean lagiangduong) {
         this.tenTN = tenTN;
-        this.date = date;
+        this.ngayThanhLap = ngayThanhLap;
         this.soluongPhong = soluongPhong;
-        this.category = category;
+        this.lagiangduong = lagiangduong;
+        this.NhanVienQuanLy = new ArrayList<Nhanvien>();
     }
 
-    public String getTenTN() {
-        return tenTN;
+    public void themNhanVien(Nhanvien nhanvien){
+        this.NhanVienQuanLy.add(nhanvien);
     }
 
-    public void setTenTN(String tenTN) {
-        this.tenTN = tenTN;
+    public boolean kiemTraSoPhongItHon(ToaNha toaNhaKhac){
+        return this.soluongPhong < toaNhaKhac.soluongPhong;
     }
 
-    public Date getDate() {
-        return date;
+    public boolean kiemTraCungNgayThanhLap(ToaNha toaNhaKhac){
+        return this.ngayThanhLap.equals(toaNhaKhac.ngayThanhLap);
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public String getThongTinNhanVien(){
+        if(lagiangduong || NhanVienQuanLy.isEmpty()){
+            return "khong co thong tin";
+        }
+        return NhanVienQuanLy.get(0).getTen();
+
     }
 
-    public int getSoluongPhong() {
-        return soluongPhong;
-    }
 
-    public void setSoluongPhong(int soluongPhong) {
-        this.soluongPhong = soluongPhong;
-    }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    @Override
-    public String toString() {
-        return "ToaNha{" +
-                "tenTN='" + tenTN + '\'' +
-                ", date=" + date +
-                ", soluongPhong=" + soluongPhong +
-                ", category='" + category + '\'' +
-                '}';
-    }
 }
